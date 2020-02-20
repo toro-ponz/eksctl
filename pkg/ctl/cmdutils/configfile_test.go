@@ -12,7 +12,6 @@ import (
 )
 
 var _ = Describe("cmdutils configfile", func() {
-
 	newCmd := func() *cobra.Command {
 		return &cobra.Command{
 			Use: "test",
