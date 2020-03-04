@@ -140,12 +140,13 @@ func scan(in io.ReadCloser, err error, out io.Writer, prefix string, summaries c
 	var text string
 	go func() {
 		for scanner.Scan() {
-			text = scanner.Text()
-			if captureSummary || enableCaptureSummary(text) {
+			rawText = scanner.Text()
+			text := fmt.Sprintf("%s %s", prefix, text)
+			if captureSummary || enableCaptureSummary(rawText) {
 				captureSummary = true
-				summary = append(summary, prefix+text)
+				summary = append(summary, text)
 			}
-			fmt.Fprintln(out, prefix+text)
+			fmt.Fprintln(out, text)
 		}
 		summaries <- summary
 	}()
