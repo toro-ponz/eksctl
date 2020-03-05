@@ -50,6 +50,8 @@ func NodeGroup(clientSet kubernetes.Interface, ng eks.KubeNodeGroup, waitTimeout
 		DeleteLocalData:     true,
 		IgnoreAllDaemonSets: true,
 
+		GracePeriodSeconds: -1,
+
 		// TODO: ideally only the list of well-known DaemonSets should
 		// be set by default
 		IgnoreDaemonSets: []metav1.ObjectMeta{
